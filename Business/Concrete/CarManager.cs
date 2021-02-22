@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,9 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal _carDal;
+        ICarDal _carDal; // Veri erişim yöntemlerinin her birini tutabilecek referans
         public CarManager(ICarDal carDal)
-        {
+        { // Oluşturma anında bir veri erişim yöntemi istiyor.
             _carDal = carDal;
         }
 
@@ -23,8 +24,10 @@ namespace Business.Concrete
             }
             else
             {
-                Console.WriteLine("Araba tanımınız en az 2 karakterden oluşmalıdır ve arabanızın günlük fiyatı 0'dan büyük olmalıdır.");
+                Console.WriteLine("The car description must contain at least two characters!\n" +
+                                  "The daily price of the car must be greater than zero!");
             }
+
         }
 
         public List<Car> GetAll()
@@ -32,14 +35,19 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public Car GetById(int carId)
         {
-            return _carDal.GetAll(c => c.BrandId == id);
+            return _carDal.Get(c => c.CarId == carId);
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public List<Car> GetCarsByBrandId(int brandId)
         {
-            return _carDal.GetAll(c => c.ColorId == id);
+            return _carDal.GetAll(c => c.BrandId == brandId);
+        }
+
+        public List<Car> GetCarsByColorId(int colorId)
+        {
+            return _carDal.GetAll(c => c.ColorId == colorId);
         }
 
         public void Update(Car car)
@@ -50,8 +58,19 @@ namespace Business.Concrete
             }
             else
             {
-                Console.WriteLine("Araba tanımınız en az 2 karakterden oluşmalıdır ve arabanızın günlük fiyatı 0'dan büyük olmalıdır.");
+                Console.WriteLine("The car description must contain at least two characters!/n" +
+                                  "The daily price of the car must be greater than zero!");
             }
+        }
+
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
         }
     }
 }
