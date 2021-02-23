@@ -11,10 +11,20 @@ namespace ConsoleUI
 
             // Test of EfCarDal
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (true)
             {
-                Console.WriteLine(@"{0}-->{1}-->{2}-->{3}", car.BrandName, car.Description, car.ColorName, car.DailyPrice);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine(@"{0}-->{1}-->{2}-->{3}", car.BrandName, car.Description, car.ColorName, car.DailyPrice);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+            }
+            
             //foreach (var car in carManager.GetAll())
             //{
             //    Console.WriteLine(car.Description);
@@ -68,4 +78,3 @@ namespace ConsoleUI
             //}
         }
     }
-}
