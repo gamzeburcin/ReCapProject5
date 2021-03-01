@@ -38,6 +38,7 @@ namespace Business.Constants
         public static string RentalUpdated = "Kiralama güncellendi";
         internal static string RentalsListed = "Kiralamalar listelendi";
         public static string RentalReturnDateNull = "Araç henüz teslim edilmedi";
+        internal static string RentalFailed = "Bu araba zaten kiralandı";
 
         internal static string Maintenance = "Sistem bakımda";
     }

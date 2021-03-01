@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -17,24 +19,17 @@ namespace Business.Concrete
         {
             _rentalDal = rentalDal;
         }
+
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult Add(Rental rental)
         {
-            var tempRent = _rentalDal.Get(r => r.CarId == rental.CarId);
-            if (tempRent==null)
+
+            if (rental.RentDate == null)
             {
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.RentalAdded);
+                return new ErrorResult(Messages.RentalFailed);
             }
-            else
-            {
-                if (tempRent.ReturnDate!=null && tempRent.ReturnDate<rental.RentDate)
-                {
-                    _rentalDal.Delete(tempRent);
-                    _rentalDal.Add(rental);
-                    return new SuccessResult(Messages.RentalAdded);
-                }
-                return new ErrorResult(Messages.RentalReturnDateNull);
-            }
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Delete(Rental rental)
@@ -45,12 +40,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalAdded);
+            return new SuccessDataResult<List<Rental>>();
         }
 
         public IDataResult<List<Rental>> GetById(int rentalId)
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.Id == rentalId));
+            return new SuccessDataResult<List<Rental>>();
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
