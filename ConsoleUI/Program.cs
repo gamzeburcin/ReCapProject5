@@ -17,16 +17,16 @@ namespace ConsoleUI
             userManager.Add(new User { FirstName = "Tülay", LastName = "Aydın", Email = "tulayaydin@gmail.com", Password = "123" });
             customerManager.Add(new Customer { UserId = 3, CompanyName = "Çekiliş" });
 
-            rentalManager.Add(new Rental { CarId = 2, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = null });
-            var result = rentalManager.GetRentalDetails();
-            Console.WriteLine(result.Message);
-            if (result.Success == true)
-            {
-                foreach (var rental in result.Data)
-                {
-                    Console.WriteLine("{0} -- {1} -- {2} -- {3}", rental.CarName, rental.CustomerName, rental.RentDate, rental.ReturnDate);
-                }
-            }
+            //rentalManager.Add(new Rental { CarId = 2, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = null });
+            //var result = rentalManager.GetRentalDetails();
+            //Console.WriteLine(result.Message);
+            //if (result.Success == true)
+            //{
+            //    foreach (var rental in result.Data)
+            //    {
+            //        Console.WriteLine("{0} -- {1} -- {2} -- {3}", rental.CarName, rental.CustomerName, rental.RentDate, rental.ReturnDate);
+            //    }
+            //}
 
         }
 
