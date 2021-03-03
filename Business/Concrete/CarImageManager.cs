@@ -36,7 +36,7 @@ namespace Business.Concrete
             }
 
             carImage.ImagePath = FileHelper.AddAsync(file);
-            carImage.Date = DateTime.Now;
+            carImage.ImageDate = DateTime.Now;
             _carImageDal.Add(carImage);
 
             return new SuccessResult(Messages.CarImageAdded);
@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public IResult Delete(CarImage carImage)
         {
-            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\..\\WebAPI")) + _carImageDal.Get(I => I.Id == carImage.Id).ImagePath;
+            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\..\\WebAPI")) + _carImageDal.Get(I => I.CarImageId == carImage.CarImageId).ImagePath;
 
             var result = BusinessRules.Run(FileHelper.DeleteAsync(oldpath));
 
@@ -60,7 +60,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> Get(int id)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(ci => ci.Id == id));
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(ci => ci.CarImageId == id));
         }
 
         public IDataResult<List<CarImage>> GetAll(Expression<Func<CarImage, bool>> filter = null)
@@ -76,9 +76,9 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(CarImage carImage, IFormFile file)
         {
-            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\..\\WebAPI")) + _carImageDal.Get(ci => ci.Id == carImage.Id).ImagePath;
+            var oldpath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\..\\WebAPI")) + _carImageDal.Get(ci => ci.CarImageId == carImage.CarImageId).ImagePath;
             carImage.ImagePath = FileHelper.UpdateAsync(oldpath, file);
-            carImage.Date = DateTime.Now;
+            carImage.ImageDate = DateTime.Now;
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }
