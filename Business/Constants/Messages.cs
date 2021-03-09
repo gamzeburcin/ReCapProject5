@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -40,11 +42,18 @@ namespace Business.Constants
         public static string RentalReturnDateNull = "Araç henüz teslim edilmedi";
         internal static string RentalFailed = "Bu araba zaten kiralandı";
 
-        internal static string FailAddedImageLimit;
-        internal static string CarImageAdded;
-        internal static string DeletedCarImage;
+        public static string FailAddedImageLimit;
+        public static string CarImageAdded;
+        public static string DeletedCarImage;
 
 
-        internal static string Maintenance = "Sistem bakımda";
+        public static string Maintenance = "Sistem bakımda";
+        public static string AuthorizationDenied="";
+        internal static string UserRegistered;
+        internal static User UserNotFound;
+        internal static User PasswordError;
+        internal static string SuccessfulLogin;
+        internal static string UserAlreadyExists;
+        internal static string AccessTokenCreated;
     }
 }
