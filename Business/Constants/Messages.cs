@@ -48,12 +48,12 @@ namespace Business.Constants
 
 
         public static string Maintenance = "Sistem bakımda";
-        public static string AuthorizationDenied="";
-        internal static string UserRegistered="";
-        internal static User UserNotFound;
-        internal static User PasswordError;
-        internal static string SuccessfulLogin="";
-        internal static string UserAlreadyExists="";
-        internal static string AccessTokenCreated="";
+        public static string AuthorizationDenied="Yetkilendirme reddedildi.";
+        public static string UserRegistered="Kayıt olundu.";
+        public static string UserNotFound="Kullanıcı bulunamadı.";
+        public static string PasswordError="Şifre hatalı";
+        public static string SuccessfulLogin="Giriş başarılı";
+        public static string UserAlreadyExists="Kullanıcı zaten mevcut";
+        public static string AccessTokenCreated="Token oluşturuldu.";
     }
 }

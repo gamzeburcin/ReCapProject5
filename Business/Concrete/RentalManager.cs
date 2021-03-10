@@ -20,7 +20,7 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
-        [ValidationAspect(typeof(CustomerValidator))]
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
 
@@ -53,6 +53,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);

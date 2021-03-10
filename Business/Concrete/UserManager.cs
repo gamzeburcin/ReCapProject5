@@ -54,6 +54,8 @@ namespace Business.Concrete
 			return _userDal.GetClaims(user);
 		}
 
+		[ValidationAspect(typeof(UserValidator))]
+
 		public IResult Update(User user)
 		{
 			_userDal.Update(user);

@@ -15,6 +15,8 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetCarsByColorId(int colorId);
         IDataResult<List<Car>> GetByUnitPrice(int min, int max);
 
+        IResult AddTransactionTest(Car entity);
+
         IResult Add(Car car);
         IResult Update(Car car);
         IResult Delete(Car car);

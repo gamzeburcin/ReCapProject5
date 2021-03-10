@@ -97,7 +97,15 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-
+        [HttpPost("addtransactiontest")]
+        public IActionResult AddTransactionTest(Car car)
+        {
+            var result = _carService.AddTransactionTest(car);
+            if (result.Success)
+                return Ok(result);
+            else
+                return BadRequest(result);
+        }
 
     }
 }

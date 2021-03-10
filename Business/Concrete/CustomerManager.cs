@@ -42,6 +42,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(c => c.UserId == userId));
         }
 
+        [ValidationAspect(typeof(CustomerValidator))]
+
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
