@@ -55,5 +55,7 @@ namespace Business.Constants
         public static string SuccessfulLogin="Giriş başarılı";
         public static string UserAlreadyExists="Kullanıcı zaten mevcut";
         public static string AccessTokenCreated="Token oluşturuldu.";
+        public static string RentalUpdatedReturnDateError= "Dönüş Tarihi Hatası";
+        public static string RentalUpdatedReturnDate= "Kiralama Güncellenen İade Tarihi";
     }
 }

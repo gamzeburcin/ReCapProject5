@@ -8,6 +8,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -58,6 +59,19 @@ namespace Business.Concrete
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
+        }
+
+        public IResult UpdateReturnDate(int carId)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == carId);
+            var updatedRental = result.LastOrDefault();
+            if (updatedRental.ReturnDate != null)
+            {
+                return new ErrorResult(Messages.RentalUpdatedReturnDateError);
+            }
+            updatedRental.ReturnDate = DateTime.Now;
+            _rentalDal.Update(updatedRental);
+            return new SuccessResult(Messages.RentalUpdatedReturnDate);
         }
     }
 }
