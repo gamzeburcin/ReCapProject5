@@ -82,9 +82,11 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4201").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4201").AllowAnyHeader().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 
